@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    color: white;
+    text-shadow:
+        0 0 10px #00E5FF,
+        0 0 20px #00E5FF,
+        0 0 40px #00E5FF;
+}
+
+body{
+     background: linear-gradient(135deg, #1A1A40, #270082, #7A0BC0);
+    text-align: center;
+}
+
+.container{
+    height:70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vmin;
+}
+
+.game{
+    height:60vmin;
+    width:60vmin;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vmin;
+}
+
+.box{
+    height:18vmin;
+    width:18vmin;
+    border-radius:1rem;
+    border:none;
+    font-size: 8vmin;
+}
+
+#RESET-BUTTON{
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    background: #0f172a;
+    border: 2px solid #00E5FF;
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow:
+        0 0 10px #00E5FF,
+        0 0 20px #00E5FF;
+    transition: 0.3s;
+}
+
+#RESET-BUTTON:hover{
+    background: #00E5FF;
+    color: #0f172a;
+    box-shadow:
+        0 0 20px #00E5FF,
+        0 0 40px #00E5FF;
+}
+
+.score-title{
+    color: white;
+    margin-top: 20px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.scoreboard{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 20px 0;
+}
+
+.player-card{
+    background: rgba(255,255,255,0.1);
+    border: 2px solid #00E5FF;
+    border-radius: 15px;
+    padding: 15px 30px;
+    color: white;
+    box-shadow: 0 0 15px #00E5FF;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.player-card p{
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+#winner-msg{
+    color: #00E5FF;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin: 20px;
+    text-shadow:
+        0 0 10px #00E5FF,
+        0 0 20px #00E5FF,
+        0 0 40px #00E5FF;
+}
+/* Winning cells */
+.winner {
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+    color: white;
+    animation: winnerPulse 1s infinite alternate;
+    box-shadow: 0 0 10px #00ff88,
+                0 0 20px #00ff88,
+                0 0 40px #00ccff;
+}
+
+/* Pulse animation */
+@keyframes winnerPulse {
+    from {
+        transform: scale(1);
+        box-shadow: 0 0 10px #00ff88,
+                    0 0 20px #00ff88;
+    }
+    to {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px #00ff88,
+                    0 0 40px #00ff88,
+                    0 0 60px #00ccff;
+    }
+}
