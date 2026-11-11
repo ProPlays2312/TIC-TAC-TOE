@@ -1,13 +1,14 @@
 let boxes = document.querySelectorAll(".box");
 let resetButton = document.querySelector("#RESET-BUTTON");
+let player1 = document.querySelector("#player1-score");
+let player2 = document.querySelector("#player2-score");
+let winnerMsg = document.querySelector("#winner-msg");
 
 let turnO = true;
+let count = 0;
 
 let player1Score = 0;
 let player2Score = 0;
-
-let player1 = document.querySelector("#player1-score");
-let player2 = document.querySelector("#player2-score");
 
 const winPatterns = [
     [0, 1, 2],
@@ -41,52 +42,52 @@ const enableBoxes = () => {
 // Reset game
 const resetGame = () => {
     turnO = true;
-    enableBoxes();
-    const resetGame = () => {
-    turnO = true;
+    count = 0;
     winnerMsg.innerText = "";
     enableBoxes();
 };
-};
-
 
 resetButton.addEventListener("click", resetGame);
 
 // Check winner
 const checkWinner = () => {
-
     for (let pattern of winPatterns) {
-
         let pos1 = boxes[pattern[0]].innerText;
         let pos2 = boxes[pattern[1]].innerText;
         let pos3 = boxes[pattern[2]].innerText;
 
         if (pos1 !== "" && pos1 === pos2 && pos2 === pos3) {
-
-    // Add winner effect
-    boxes[pattern[0]].classList.add("winner");
-    boxes[pattern[1]].classList.add("winner");
-    boxes[pattern[2]].classList.add("winner");
+            // Add winner effect
+            boxes[pattern[0]].classList.add("winner");
+            boxes[pattern[1]].classList.add("winner");
+            boxes[pattern[2]].classList.add("winner");
 
             if (pos1 === "O") {
-    player1Score++;
-    player1.innerText = player1Score;
-    winnerMsg.innerText = "🏆 O Wins!";
-} else {
-    player2Score++;
-    player2.innerText = player2Score;
-    winnerMsg.innerText = "🏆 X Wins!";
-}
+                player1Score++;
+                player1.innerText = player1Score;
+                winnerMsg.innerText = "🏆 O Wins!";
+            } else {
+                player2Score++;
+                player2.innerText = player2Score;
+                winnerMsg.innerText = "🏆 X Wins!";
+            }
+
+            disableBoxes();
+            return true;
         }
     }
+    return false;
 };
 
+// Draw game
+const gameDraw = () => {
+    winnerMsg.innerText = "🤝 Game was a Draw!";
+    disableBoxes();
+};
 
 // Box click events
 boxes.forEach((box) => {
-
     box.addEventListener("click", () => {
-
         if (turnO) {
             box.innerText = "O";
             turnO = false;
@@ -96,13 +97,12 @@ boxes.forEach((box) => {
         }
 
         box.disabled = true;
+        count++;
 
-        checkWinner();
+        let isWinner = checkWinner();
 
+        if (count === 9 && !isWinner) {
+            gameDraw();
+        }
     });
-
 });
-
-
-let winnerMsg = document.querySelector("#winner-msg");
-
